@@ -46,7 +46,18 @@ public class StockManager
      */
     public Product findProduct(int id)
     {
-        return null;
+        Product producto = null;
+        for(Product stocks : stock)  //recorremos toda la coleccion de productos
+        {
+            if(stocks.getID()==id)  // si el id de algun producto coincide con el introducido por parametro
+            {
+                producto = stocks ; //almacenamos ese producto en la variable local
+            }
+            
+            
+            
+        }
+        return producto ;
     }
     
     /**
@@ -66,5 +77,9 @@ public class StockManager
      */
     public void printProductDetails()
     {
+        for(Product stocks : stock)   
+        {
+            System.out.println(stocks.toString());
+        }
     }
 }
