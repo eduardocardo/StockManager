@@ -37,6 +37,18 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
+        int cont = 0;
+        boolean findProduct = false;        // producto no encontrado
+        while((cont < stock.size()) && (findProduct == false))  
+        {
+            Product product = stock.get(cont);
+            if(product.getID() == id)
+            {
+                product.increaseQuantity(amount);
+                findProduct = true;
+            }
+            cont++;
+        }
     }
     
     /**
@@ -47,15 +59,15 @@ public class StockManager
     public Product findProduct(int id)
     {
         Product producto = null;
-        for(Product stocks : stock)  //recorremos toda la coleccion de productos
+        int cont = 0;
+        while(cont < stock.size() && (producto == null) )  //recorremos toda la coleccion de productos
         {
-            if(stocks.getID()==id)  // si el id de algun producto coincide con el introducido por parametro
+            Product item = stock.get(cont);
+            if(item.getID()==id)  // si el id de algun producto coincide con el introducido por parametro
             {
-                producto = stocks ; //almacenamos ese producto en la variable local
+                producto = item ; //almacenamos ese producto en la variable local
             }
-            
-            
-            
+            cont++;                       
         }
         return producto ;
     }
@@ -69,13 +81,18 @@ public class StockManager
      */
     public int numberInStock(int id)
     {
-        int producto = 0;
-        for(Product stocks : stock)
+        int producto = 0;  
+        int cont = 0;
+        boolean findProduct = false;    //no encuentra el producto
+        while(cont< stock.size() && findProduct == false)      //recorremos la coleccion de objetos 
         {
-            if(stocks.getID()==id)
+            Product item = stock.get(cont);   
+            if(item.getID()==id)       //si la id de un objeto coincide con la id metida por parametro
             {
-                producto = stocks.getQuantity();
+                producto = item.getQuantity(); // guardamoso en la variable local la cantida de esa objeto
+                findProduct = true;
             }
+            cont++;
         }
         return producto;
     }
@@ -85,9 +102,24 @@ public class StockManager
      */
     public void printProductDetails()
     {
-        for(Product stocks : stock)   
+        for(Product product : stock)   //recorremos toda la coleccion
         {
-            System.out.println(stocks.toString());
+            System.out.println(product.toString());  //imprimimos los detalles de cada objeto de la coleccion
+        }
+    }
+    
+    /**
+     * Metodo que imprime por pantalla los detalles de los productos cuya cantidad en stock
+     * sea menor del parametro que le introducimos
+     */
+    public void printProductDetails(int amount)
+    {
+        for(Product product : stock)
+        {
+            if(product.getQuantity()<amount)
+            {
+                System.out.println(product.toString);
+            }
         }
     }
 }
