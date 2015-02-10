@@ -26,20 +26,19 @@ public class StockManager
      */
     public void addProduct(Product item)
     {
-        
+
         if(findProduct(item.getID()) != null )   //la id del producto a añadir ya existe en el stock
         {
             System.out.println("El producto que introduces tiene la misma ID que otro producto ya existente");
-            
+
         }
         else  //la ID del producto a añadir no se encuentra en el stock
         {
             stock.add(item);   //añade el producto
         }
-        
-        
+
     }
-    
+
     /**
      * Receive a delivery of a particular product.
      * Increase the quantity of the product by the given amount.
@@ -48,20 +47,26 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
-        int cont = 0;
-        boolean findProduct = false;        // producto no encontrado
-        while((cont < stock.size()) && (findProduct == false))  
+        //         int cont = 0;
+        //         boolean findProduct = false;        // producto no encontrado
+        //         while((cont < stock.size()) && (findProduct == false))  
+        //         {
+        //             Product product = stock.get(cont);
+        //             if(product.getID() == id)
+        //             {
+        //                 product.increaseQuantity(amount);
+        //                 findProduct = true;
+        //             }
+        //             cont++;
+        //         }
+        Product product = findProduct(id);   //buscamos el producto segun la id introducida por parametro y lo almacenamos
+                                              //en la varible local
+        if(product != null)      //si ese producto existe en la coleccion
         {
-            Product product = stock.get(cont);
-            if(product.getID() == id)
-            {
-                product.increaseQuantity(amount);
-                findProduct = true;
-            }
-            cont++;
+            product.increaseQuantity(amount);     // aumentamos su cantidad segun el parametro introducido
         }
     }
-    
+
     /**
      * Try to find a product in the stock with the given id.
      * @return The identified product, or null if there is none
@@ -82,7 +87,7 @@ public class StockManager
         }
         return producto ;
     }
-    
+
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
@@ -92,20 +97,26 @@ public class StockManager
      */
     public int numberInStock(int id)
     {
-        int producto = 0;  
-        int cont = 0;
-        boolean findProduct = false;    //no encuentra el producto
-        while(cont< stock.size() && findProduct == false)      //recorremos la coleccion de objetos 
+
+        //         int cont = 0;
+        //         boolean findProduct = false;    //no encuentra el producto
+        //         while(cont< stock.size() && findProduct == false)      //recorremos la coleccion de objetos 
+        //         {
+        //             Product item = stock.get(cont);   
+        //             if(item.getID()==id)       //si la id de un objeto coincide con la id metida por parametro
+        //             {
+        //                 producto = item.getQuantity(); // guardamoso en la variable local la cantida de esa objeto
+        //                 findProduct = true;
+        //             }
+        //             cont++;
+        //         }
+        int item = 0;
+        Product product = findProduct(id);
+        if( product != null)
         {
-            Product item = stock.get(cont);   
-            if(item.getID()==id)       //si la id de un objeto coincide con la id metida por parametro
-            {
-                producto = item.getQuantity(); // guardamoso en la variable local la cantida de esa objeto
-                findProduct = true;
-            }
-            cont++;
+            item= product.getQuantity();
         }
-        return producto;
+        return item;
     }
 
     /**
@@ -118,7 +129,7 @@ public class StockManager
             System.out.println(product.toString());  //imprimimos los detalles de cada objeto de la coleccion
         }
     }
-    
+
     /**
      * Metodo que imprime por pantalla los detalles de los productos cuya cantidad en stock
      * sea menor del parametro que le introducimos
@@ -133,7 +144,7 @@ public class StockManager
             }
         }
     }
-    
+
     /**
      * Metodo que permite buscar productor por su nombre
      */
@@ -142,10 +153,10 @@ public class StockManager
         Product product = null;
         int cont = 0;
         while((cont<stock.size()) && (product == null))    //repite el ciclo hasta que encuentra el objeto o recorre toda
-                                                          //la coleccion
+        //la coleccion
         {
             Product item = stock.get(cont);      //almacenamos en la variable local el objeto de la coleccion correspondiente
-                                                 //a la posicion del ciclo en el que estamos
+            //a la posicion del ciclo en el que estamos
             if(item.getName() == name)        //si el nombre del producto a buscar coincide con alguno de la coleccion
             {
                 product = item;            //almacenamos ese producto en la variable local product
