@@ -26,7 +26,18 @@ public class StockManager
      */
     public void addProduct(Product item)
     {
-        stock.add(item);
+        
+        if(findProduct(item.getID()) != null )   //la id del producto a añadir ya existe en el stock
+        {
+            System.out.println("El producto que introduces tiene la misma ID que otro producto ya existente");
+            
+        }
+        else  //la ID del producto a añadir no se encuentra en el stock
+        {
+            stock.add(item);   //añade el producto
+        }
+        
+        
     }
     
     /**
