@@ -37,4 +37,19 @@ public class Test
         
         stockManager.printProductDetailsBelowStock(3);
     }
+    
+    /**
+     * 
+     */
+    public Product test2()
+    {
+        StockManager stockManager = new StockManager();
+        
+        stockManager.addProduct(new Product(1,"peras"));
+        stockManager.addProduct(new Product(2,"manzanas"));
+        stockManager.addProduct(new Product(3,"platanos"));
+        stockManager.addProduct(new Product(4,"naranjas"));
+        
+        return stockManager.findProduct("kiwi");
+    }
 }

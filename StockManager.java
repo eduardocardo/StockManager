@@ -133,4 +133,25 @@ public class StockManager
             }
         }
     }
+    
+    /**
+     * Metodo que permite buscar productor por su nombre
+     */
+    public Product findProduct(String name)
+    {
+        Product product = null;
+        int cont = 0;
+        while((cont<stock.size()) && (product == null))    //repite el ciclo hasta que encuentra el objeto o recorre toda
+                                                          //la coleccion
+        {
+            Product item = stock.get(cont);      //almacenamos en la variable local el objeto de la coleccion correspondiente
+                                                 //a la posicion del ciclo en el que estamos
+            if(item.getName() == name)        //si el nombre del producto a buscar coincide con alguno de la coleccion
+            {
+                product = item;            //almacenamos ese producto en la variable local product
+            }
+            cont++;
+        }
+        return product;
+    }
 }
