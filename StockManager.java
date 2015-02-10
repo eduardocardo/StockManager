@@ -112,13 +112,13 @@ public class StockManager
      * Metodo que imprime por pantalla los detalles de los productos cuya cantidad en stock
      * sea menor del parametro que le introducimos
      */
-    public void printProductDetails(int amount)
+    public void printProductDetailsBelowStock(int amount)
     {
-        for(Product product : stock)
+        for(Product product : stock)   //recorremos la coleccion de objetos
         {
-            if(product.getQuantity()<amount)
+            if(product.getQuantity()<amount)  //comprobamos que la cantidad de un objeto sea menor que el parametro
             {
-                System.out.println(product.toString);
+                System.out.println(product.toString());   //imprimimos los detalles
             }
         }
     }
